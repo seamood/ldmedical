@@ -18,8 +18,44 @@
       let d = 750 / 10;//在屏宽为350时 1rem == 10px
       var fontSize = w / d;//fontSize表示当屏宽为w时html的字体大小
       document.documentElement.style.fontSize = fontSize + 'px';
+      coverImg();
       // coverImg();
     };
     window.onresize()
+    // 等比缩放图片
+function coverImg(item, box) {
+  var w, h;
+  if (box) {
+    w = box.innerWidth || box.offsetWidth || box.scrollWidth;
+    h = box.innerHeight || box.offsetHeight || box.scrollHeight;
+  }
+  else {
+    w = window.innerWidth || document.documentElement.clientWidth || document.body.offsetWidth;
+    h = window.innerHeight || document.documentElement.clientHeight || document.body.offsetHeight;
+  }
+
+  let coverImg = item ? [item] : document.getElementsByClassName("coverImg");
+  for (let i = 0; i < coverImg.length; i++) {
+    let item = coverImg[i];
+    let iW = item.offsetWidth;
+    let iH = item.offsetHeight || item.scrollHeight;
+
+    let r = false;
+    if (iH >= h && iW <= w) {
+      r = true;
+    } else if (iH <= h && iW >= w) {
+      r = false;
+    }
+
+    if (r) {
+      item.style.height = "100%";
+      item.style.width = "auto";
+    } else {
+      item.style.width = "100%";
+      item.style.height = "auto";
+    }
+  }
+}
+window.coverImg = coverImg;
   </script>
 </html>

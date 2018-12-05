@@ -1,5 +1,5 @@
 <template>
-  <div class='box'>
+  <div class='foot'>
     <div class='connect'>
       <div class='hezi bgimg'>{{name}}</div>
       <div class='hezi' v-for='item of images' :key='item.url'>
@@ -47,6 +47,6 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang='less'>
     @import '../assets/less/foot';
 </style>
